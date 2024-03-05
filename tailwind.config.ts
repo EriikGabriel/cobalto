@@ -85,10 +85,11 @@ const config = {
       },
       fontFamily: {
         inter: ["var(--font-inter)", ...fontFamily.sans],
+        pathway: ["var(--font-pathway)", ...fontFamily.sans],
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 } satisfies Config
 
 export default config

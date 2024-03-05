@@ -46,7 +46,6 @@ export const StickyScroll = ({
   })
 
   scrollY.on("change", (latest) => {
-    console.log(latest)
     const container = ref.current as HTMLDivElement
 
     if (latest >= 2079) {

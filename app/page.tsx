@@ -1,3 +1,4 @@
+import { CodeIcon, GitHubLogoIcon, RocketIcon } from "@radix-ui/react-icons"
 import { Button } from "@ui/button"
 import { MacbookScroll } from "@ui/macbook-scroll"
 import { TextGenerateEffect } from "@ui/text-generate-effect"
@@ -8,39 +9,22 @@ import { StickyScroll } from "./components/ui/sticky-scroll"
 export default function Home() {
   const content = [
     {
-      title: "Collaborative Editing",
+      title: "Open-source project",
       description:
-        "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-          Collaborative Editing
-        </div>
-      ),
+        "The project is completely open-source, which means you can contribute! To do this, you can report bugs, suggest improvements, submit code or publicize the project.",
+      icon: <CodeIcon className="mr-3 h-6 w-6 text-primary-500" />,
     },
     {
-      title: "Real time changes",
+      title: "Sync with Github",
       description:
-        "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+        "This project connects to your Github account, allowing you to access and publish your README directly to your repositories",
+      icon: <GitHubLogoIcon className="mr-3 h-6 w-6 text-primary-500" />,
     },
     {
-      title: "Version control",
+      title: "AI integration",
       description:
-        "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-          Version control
-        </div>
-      ),
-    },
-    {
-      title: "Running out of content",
-      description:
-        "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-      content: (
-        <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-          Running out of content
-        </div>
-      ),
+        "This project has integration with AI, which helps with possible changes to the README and suggests sessions related to the active repository.",
+      icon: <RocketIcon className="mr-3 h-6 w-6 text-primary-500" />,
     },
   ]
 
@@ -84,7 +68,7 @@ export default function Home() {
           </Link>
         </p>
       </div>
-      <div className="w-full pb-[200vh]">
+      <div className="relative w-full pb-[80vh] mb-20">
         <MacbookScroll
           title={
             <p>
@@ -99,6 +83,42 @@ export default function Home() {
         />
         <StickyScroll content={content} />
       </div>
+      <footer className="flex min-h-64 items-center gap-40 w-full p-5 px-20 bg-[#0A1023]">
+        <Image src="/logo.svg" alt="Cobalto logo" width={80} height={80} />
+        <section className="flex flex-col gap-5">
+          <h1 className="text-xl font-bold">Community</h1>
+          <div className="flex flex-col gap-2">
+            <Link href="#" className="text-primary-50 hover:underline">
+              Github
+            </Link>
+            <Link href="#" className="text-primary-50 hover:underline">
+              Discord
+            </Link>
+          </div>
+        </section>
+        <section className="flex flex-col gap-5">
+          <h1 className="text-xl font-bold">Getting Started</h1>
+          <div className="flex flex-col gap-2">
+            <Link href="#" className="text-primary-50 hover:underline">
+              Usage
+            </Link>
+            <Link href="#" className="text-primary-50 hover:underline">
+              Cobalto&apos;s examples
+            </Link>
+          </div>
+        </section>
+        <section className="flex flex-col gap-5">
+          <h1 className="text-xl font-bold">Built with 🩵 by</h1>
+          <div className="flex flex-col gap-2">
+            <Link href="#" className="text-primary-50 hover:underline">
+              @EriikGabriel
+            </Link>
+            <Link href="#" className="text-primary-50 hover:underline">
+              @matpitas
+            </Link>
+          </div>
+        </section>
+      </footer>
     </main>
   )
 }

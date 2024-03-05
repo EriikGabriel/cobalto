@@ -33,19 +33,15 @@
   }
 
   *::-webkit-scrollbar {
-    @apply w-[5px];
+    @apply w-[10px];
   }
 
   *::-webkit-scrollbar-track {
-    @apply rounded-sm bg-primary-800;
-  }
-
-  *::-webkit-scrollbar-track:hover {
-    @apply bg-primary-900;
+    @apply bg-primary-800;
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply rounded-sm bg-primary-900;
+    @apply bg-primary-900;
   }
 
   *::-webkit-scrollbar-thumb:hover {
@@ -54,5 +50,17 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }

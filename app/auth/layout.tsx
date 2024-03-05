@@ -1,15 +1,13 @@
 import { cn } from "@lib/utils"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
-import { NextAuthProvider } from "./components/auth-provider"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
-  title: "Cobalto - Readme Generator",
+  title: "Cobalto - GitHub Authentication",
   description:
-    "An Open-Source README generator for Github projects. Customizable. Practical. Efficient.",
+    "A authentication page to login in application - Cobalto",
 }
 
 export default function RootLayout({
@@ -25,9 +23,7 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <NextAuthProvider>
-          {children}
-        </NextAuthProvider>
+        {children}
       </body>
     </html>
   )

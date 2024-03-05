@@ -85,6 +85,7 @@ const config = {
       },
       fontFamily: {
         inter: ["var(--font-inter)", ...fontFamily.sans],
+        pathway: ["var(--font-pathway)", ...fontFamily.sans],
       },
     },
   },

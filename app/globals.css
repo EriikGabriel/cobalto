@@ -31,6 +31,27 @@
   * {
     @apply border-border;
   }
+
+  *::-webkit-scrollbar {
+    @apply w-[5px];
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply rounded-sm bg-primary-800;
+  }
+
+  *::-webkit-scrollbar-track:hover {
+    @apply bg-primary-900;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply rounded-sm bg-primary-900;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-900;
+  }
+
   body {
     @apply bg-background text-foreground;
   }

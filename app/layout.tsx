@@ -2,6 +2,7 @@ import { cn } from "@lib/utils"
 import type { Metadata } from "next"
 import { Inter, Pathway_Gothic_One as Pathway } from "next/font/google"
 import "./globals.css"
+import { NextAuthProvider } from "./components/auth-provider"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
@@ -31,7 +32,9 @@ export default function RootLayout({
           pathway.variable
         )}
       >
-        {children}
+        <NextAuthProvider>
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   )

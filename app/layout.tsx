@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
-import { Inter, Pathway_Gothic_One as Pathway } from "next/font/google"
+
+import { cn } from "@lib/utils"
+import { Inter, Pathway_Gothic_One as Pathway, Roboto } from "next/font/google"
 import localFont from "next/font/local"
 
 import "./globals.css"
@@ -7,6 +9,12 @@ import "./globals.css"
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+})
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-roboto",
 })
 
 const pathway = Pathway({
@@ -40,7 +48,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${pathway.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "min-h-dvh antialiased",
+          inter.variable,
+          roboto.variable,
+          pathway.variable,
+          geistSans.variable,
+          geistMono.variable
+        )}
       >
         {children}
       </body>

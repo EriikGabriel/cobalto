@@ -1,124 +1,101 @@
-import { CodeIcon, GitHubLogoIcon, RocketIcon } from "@radix-ui/react-icons"
-import { Button } from "@ui/button"
-import { MacbookScroll } from "@ui/macbook-scroll"
-import { TextGenerateEffect } from "@ui/text-generate-effect"
-import Image from "next/image"
-import Link from "next/link"
-import { StickyScroll } from "./components/ui/sticky-scroll"
+import Image from "next/image";
 
 export default function Home() {
-  const content = [
-    {
-      title: "Open-source project",
-      description:
-        "The project is completely open-source, which means you can contribute! To do this, you can report bugs, suggest improvements, submit code or publicize the project.",
-      icon: <CodeIcon className="mr-3 h-6 w-6 text-primary-500" />,
-    },
-    {
-      title: "Sync with Github",
-      description:
-        "This project connects to your Github account, allowing you to access and publish your README directly to your repositories",
-      icon: <GitHubLogoIcon className="mr-3 h-6 w-6 text-primary-500" />,
-    },
-    {
-      title: "AI integration",
-      description:
-        "This project has integration with AI, which helps with possible changes to the README and suggests sessions related to the active repository.",
-      icon: <RocketIcon className="mr-3 h-6 w-6 text-primary-500" />,
-    },
-  ]
-
   return (
-    <main className="max-w-dvw h-dvh flex flex-col items-center gap-20">
-      <header className="flex justify-center items-center gap-5 w-full py-5">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
-          src="/logo.svg"
-          alt="Cobalto logo"
-          width={80}
-          height={80}
-          className="w-20 h-20"
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
         />
-        <h1 className="text-5xl uppercase text-slate-400 font-pathway">
-          Cobalto
-        </h1>
-      </header>
-      <div className="flex flex-col items-center gap-5 text-center w-2/5">
-        <h1 className="text-6xl tracking-[-5px] font-bold leading-tight">
-          Quickly build the repository
-          <span className="bg-gradient-to-r from-primary-900 via-primary-300 to-primary-900 inline-block text-transparent bg-clip-text">
-            README on GitHub.
-          </span>
-        </h1>
-        <TextGenerateEffect className="text-center text-lg text-slate-400">
-          An Open-Source README generator for Github projects. Customizable.
-          Practical. Efficient.
-        </TextGenerateEffect>
-      </div>
-      <div className="flex flex-col gap-3">
-        <Button
-          className="bg-slate-50 hover:bg-slate-50/80  text-lg font-bold px-20 py-8"
-          size="lg"
+        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+          <li className="mb-2">
+            Get started by editing{" "}
+            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
+              app/page.tsx
+            </code>
+            .
+          </li>
+          <li>Save and see your changes instantly.</li>
+        </ol>
+
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <a
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
+          </a>
+        </div>
+      </main>
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Get Started
-        </Button>
-        <p className="flex gap-1 justify-center">
-          or
-          <Link href="/docs" className="text-primary-400 hover:underline">
-            read the docs.
-          </Link>
-        </p>
-      </div>
-      <div className="relative w-full pb-[80vh] mb-20">
-        <MacbookScroll
-          title={
-            <p>
-              Learn more about <br />
-              <span className="text-slate-400 tracking-wide font-normal text-5xl font-pathway uppercase">
-                Cobalto
-              </span>
-            </p>
-          }
-          src={`/demo.svg`}
-          showGradient={false}
-        />
-        <StickyScroll content={content} />
-      </div>
-      <footer className="flex min-h-64 items-center gap-40 w-full p-5 px-20 bg-[#0A1023]">
-        <Image src="/logo.svg" alt="Cobalto logo" width={80} height={80} />
-        <section className="flex flex-col gap-5">
-          <h1 className="text-xl font-bold">Community</h1>
-          <div className="flex flex-col gap-2">
-            <Link href="#" className="text-primary-50 hover:underline">
-              Github
-            </Link>
-            <Link href="#" className="text-primary-50 hover:underline">
-              Discord
-            </Link>
-          </div>
-        </section>
-        <section className="flex flex-col gap-5">
-          <h1 className="text-xl font-bold">Getting Started</h1>
-          <div className="flex flex-col gap-2">
-            <Link href="#" className="text-primary-50 hover:underline">
-              Usage
-            </Link>
-            <Link href="#" className="text-primary-50 hover:underline">
-              Cobalto&apos;s examples
-            </Link>
-          </div>
-        </section>
-        <section className="flex flex-col gap-5">
-          <h1 className="text-xl font-bold">Built with 🩵 by</h1>
-          <div className="flex flex-col gap-2">
-            <Link href="#" className="text-primary-50 hover:underline">
-              @EriikGabriel
-            </Link>
-            <Link href="#" className="text-primary-50 hover:underline">
-              @matpitas
-            </Link>
-          </div>
-        </section>
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
       </footer>
-    </main>
-  )
+    </div>
+  );
 }

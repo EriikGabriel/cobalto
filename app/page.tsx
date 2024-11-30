@@ -14,6 +14,7 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import { BentoGrid, BentoGridItem } from "./components/ui/bento-grid"
+import BlurFade from "./components/ui/blur-fade"
 import { cn } from "./lib/utils"
 
 const items = [
@@ -135,17 +136,19 @@ export default function Home() {
           </div>
         </div>
 
-        <BentoGrid className="max-w -translate-y-20 -8xl mx-auto md:auto-rows-[10rem] ">
-          {items.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              className={cn(item.className, " bg-slate-900")}
-              icon={item.icon}
-            />
-          ))}
-        </BentoGrid>
+        <BlurFade delay={0.25} inView>
+          <BentoGrid className="max-w -translate-y-20 -8xl mx-auto md:auto-rows-[10rem] ">
+            {items.map((item, i) => (
+              <BentoGridItem
+                key={i}
+                title={item.title}
+                description={item.description}
+                className={cn(item.className, " bg-slate-900")}
+                icon={item.icon}
+              />
+            ))}
+          </BentoGrid>
+        </BlurFade>
       </main>
       <footer className="flex min-h-64 items-center gap-40 w-full p-5 px-20 bg-[#0A1023]">
         <Image src="/logo.svg" alt="Cobalto logo" width={80} height={80} />

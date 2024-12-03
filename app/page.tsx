@@ -1,21 +1,23 @@
-import { AnimatedShinyText } from "@ui/animated-shiny-text"
-import { BorderBeam } from "@ui/border-beam"
-import { Button } from "@ui/button"
-import { Particles } from "@ui/particles"
-import { ShimmerButton } from "@ui/shimmer-button"
+import { AnimatedShinyText } from "@ui/animated-shiny-text";
+import { BentoGrid, BentoGridItem } from "@ui/bento-grid";
+import BlurFade from "@ui/blur-fade";
+import { BorderBeam } from "@ui/border-beam";
+import { Particles } from "@ui/particles";
+import { RainbowButton } from "@ui/rainbow-button";
+import { ShimmerButton } from "@ui/shimmer-button";
+
+import { cn } from "@lib/utils";
+
 import {
   ArrowRightIcon,
   BoxIcon,
   CodeIcon,
   Github,
   RocketIcon,
-} from "lucide-react"
+} from "lucide-react";
 
-import Image from "next/image"
-import Link from "next/link"
-import { BentoGrid, BentoGridItem } from "./components/ui/bento-grid"
-import BlurFade from "./components/ui/blur-fade"
-import { cn } from "./lib/utils"
+import Image from "next/image";
+import Link from "next/link";
 
 const items = [
   {
@@ -46,15 +48,15 @@ const items = [
     className: "md:col-span-2",
     icon: <BoxIcon className="h-4 w-4 text-primary-400" />,
   },
-]
+];
 
 export default function Home() {
   return (
     <div>
-      <main className="max-w-dvw min-h-dvh flex flex-col mb-32 items-center gap-2 px-60">
-        <header className="flex justify-center items-center gap-3 animate-fade-in opacity-0 z-10 min-h-20 w-full mb-10">
-          <div className="flex justify-between items-center w-full">
-            <h1 className="text-4xl uppercase text-slate-400 font-pathway">
+      <main className="max-w-dvw mb-32 flex min-h-dvh flex-col items-center gap-2 px-60">
+        <header className="z-10 mb-10 flex min-h-20 w-full animate-fade-in items-center justify-center gap-3 opacity-0">
+          <div className="flex w-full items-center justify-between">
+            <h1 className="font-pathway text-4xl uppercase text-slate-400">
               Cobalto
             </h1>
             <Image
@@ -64,40 +66,41 @@ export default function Home() {
               height={45}
               className="h-fit"
             />
-            <ShimmerButton className="rounded-full font-bold h-10">
-              View Github
-            </ShimmerButton>
+            <Link href="https://github.com/EriikGabriel/cobalto">
+              <ShimmerButton className="h-10 rounded-full font-bold">
+                View Github
+              </ShimmerButton>
+            </Link>
           </div>
         </header>
-        <section className="flex font-roboto flex-col items-center gap-5 text-center w-full">
-          <button className="backdrop-filter-[12px] group inline-flex h-7 -translate-y-4 animate-fade-in items-center justify-between gap-1 rounded-full border border-slate-400/5 bg-slate-400/10 px-3 text-xs opacity-0 transition-all ease-in hover:cursor-pointer hover:bg-slate-500/20 text-black">
+        <section className="flex w-full flex-col items-center gap-5 text-center font-roboto">
+          <button className="backdrop-filter-[12px] group inline-flex h-7 -translate-y-4 animate-fade-in items-center justify-between gap-1 rounded-full border border-slate-400/5 bg-slate-400/10 px-3 text-xs text-black opacity-0 transition-all ease-in hover:cursor-pointer hover:bg-slate-500/20">
             <AnimatedShinyText className="inline-flex items-center justify-center">
               <span>✨ Introducing Cobalto</span>
               <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
             </AnimatedShinyText>
           </button>
-          <h1 className="text-7xl font-bold leading-tight opacity-0 animate-fade-in">
+          <h1 className="animate-fade-in text-7xl font-bold leading-tight opacity-0">
             Quickly build the repository
             <br />
-            <span className="bg-gradient-to-r from-primary-800 via-primary-300 to-primary-800 inline-block text-transparent bg-clip-text">
+            <span className="inline-block bg-gradient-to-r from-primary-800 via-primary-300 to-primary-800 bg-clip-text text-transparent">
               README on GitHub.
             </span>
           </h1>
 
-          <p className="font-medium text-xl -translate-y-4 animate-fade-in opacity-0 [--animation-delay:400ms] text-slate-400">
+          <p className="-translate-y-4 animate-fade-in text-xl font-medium text-slate-400 opacity-0 [--animation-delay:400ms]">
             An Open-Source README generator for Github projects.
             <br />
             Customizable. Practical. Efficient.
           </p>
 
-          <div className="flex flex-col gap-3 pt-10 animate-fade-in ease-in-out opacity-0 [--animation-delay:600ms]">
-            <Button
-              className="bg-slate-50 hover:bg-slate-50/80 text-lg font-semibold px-10 py-5"
-              size="lg"
-            >
-              Get Started
-            </Button>
-            <p className="flex gap-1 justify-center">
+          <div className="flex animate-fade-in flex-col gap-3 pt-10 opacity-0 ease-in-out [--animation-delay:600ms]">
+            <Link href="/auth">
+              <RainbowButton className="px-10 py-5 text-lg">
+                Get Started
+              </RainbowButton>
+            </Link>
+            <p className="flex justify-center gap-1">
               or
               <Link href="/docs" className="text-primary-400 hover:underline">
                 read the docs.
@@ -114,10 +117,7 @@ export default function Home() {
         </section>
 
         <div className="relative mt-10 animate-fade-up opacity-0 [--animation-delay:400ms] [perspective:2000px] after:absolute after:inset-0 after:z-50 after:[background:linear-gradient(to_top,hsl(var(--background))_30%,transparent)]">
-          <div
-            className="rounded-xl border border-white/10 bg-white bg-opacity-[0.01] before:absolute before:bottom-1/2 before:left-0 before:top-0 before:size-full before:opacity-0 before:[background-image:linear-gradient(to_bottom,var(--color-one),var(--color-one),transparent_40%)] before:[filter:blur(180px)] before:animate-image-glow
-				"
-          >
+          <div className="rounded-xl border border-white/10 bg-white bg-opacity-[0.01] before:absolute before:bottom-1/2 before:left-0 before:top-0 before:size-full before:animate-image-glow before:opacity-0 before:[background-image:linear-gradient(to_bottom,var(--color-one),var(--color-one),transparent_40%)] before:[filter:blur(180px)]">
             <BorderBeam
               size={200}
               duration={12}
@@ -131,26 +131,26 @@ export default function Home() {
               width={1200}
               height={600}
               alt="HeroDarkImage"
-              className="relative size-full object-contain block "
+              className="relative block size-full object-contain"
             />
           </div>
         </div>
 
         <BlurFade delay={0.25} inView>
-          <BentoGrid className="max-w -translate-y-20 -8xl mx-auto md:auto-rows-[10rem] ">
+          <BentoGrid className="max-w -8xl mx-auto -translate-y-20 md:auto-rows-[10rem]">
             {items.map((item, i) => (
               <BentoGridItem
                 key={i}
                 title={item.title}
                 description={item.description}
-                className={cn(item.className, " bg-slate-900")}
+                className={cn(item.className, "bg-slate-900")}
                 icon={item.icon}
               />
             ))}
           </BentoGrid>
         </BlurFade>
       </main>
-      <footer className="flex min-h-64 items-center gap-40 w-full p-5 px-20 bg-[#0A1023]">
+      <footer className="flex min-h-64 w-full items-center gap-40 bg-[#0A1023] p-5 px-20">
         <Image src="/logo.svg" alt="Cobalto logo" width={80} height={80} />
         <section className="flex flex-col gap-5">
           <h1 className="text-xl font-bold">Community</h1>
@@ -187,5 +187,5 @@ export default function Home() {
         </section>
       </footer>
     </div>
-  )
+  );
 }

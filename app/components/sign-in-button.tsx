@@ -13,7 +13,7 @@ export function SignInButton({}) {
 
   async function handleSignInWithGithub() {
     await authClient.signIn.social(
-      { provider: "github", callbackURL: "/home" },
+      { provider: "github", callbackURL: "/" },
       {
         onRequest: () => setPending(true),
         onError: (ctx: ErrorContext) => console.error(ctx.error),

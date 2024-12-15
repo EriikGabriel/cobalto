@@ -1,10 +1,6 @@
-import { cookies } from "next/headers";
 import { Octokit } from "octokit";
+import { getAccessToken } from "./cookies";
 
-const cookieStore = await cookies();
+const accessToken = await getAccessToken();
 
-const accessToken = cookieStore.get("@cobalto:accessToken");
-
-export const octokit = new Octokit({
-  auth: accessToken?.value,
-});
+export const octokit = new Octokit({ auth: accessToken?.value });

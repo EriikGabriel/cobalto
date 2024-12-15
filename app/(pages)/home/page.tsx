@@ -1,14 +1,11 @@
-import { octokit } from "@/app/services/octokit";
-import { auth } from "@app/services/auth";
 import { SignOutButton } from "@components/sign-out-button";
-import { headers } from "next/headers";
+import { getAccessToken } from "@services/cookies";
+import { octokit } from "@services/octokit";
 
 export default async function Auth() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
   const { data } = await octokit.request("GET /user");
+
+  const accessToken = await getAccessToken();
 
   return (
     <main className="flex h-dvh w-full flex-col items-center">
@@ -17,9 +14,8 @@ export default async function Auth() {
       </header>
       <h1>Home</h1>
 
-      {session && (
+      {accessToken && (
         <div>
-          <p>Session:</p>
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
       )}

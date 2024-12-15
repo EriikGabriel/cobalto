@@ -1,6 +1,5 @@
-import { betterFetch } from "@better-fetch/fetch";
-import type { Session } from "@services/auth";
 import { NextResponse, type NextRequest } from "next/server";
+import { getAccessToken } from "./app/services/cookies";
 
 const authRoutes = ["/auth"];
 const introductionRoutes = ["/"];
@@ -10,15 +9,9 @@ export default async function authMiddleware(request: NextRequest) {
   const isAuthRoute = authRoutes.includes(pathName);
   const isIntroductionRoute = introductionRoutes.includes(pathName);
 
-  const { data: session } = await betterFetch<Session>(
-    "/api/auth/get-session",
-    {
-      baseURL: process.env.BASE_URL,
-      headers: { cookie: request.headers.get("cookie") || "" },
-    },
-  );
+  const accessToken = await getAccessToken();
 
-  if (!session) {
+  if (!accessToken) {
     if (isAuthRoute || isIntroductionRoute) {
       return NextResponse.next();
     }

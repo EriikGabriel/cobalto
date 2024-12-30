@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { cn } from "@lib/utils";
+import { CookiesProvider } from "next-client-cookies/server";
 import { Inter, Pathway_Gothic_One as Pathway, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -57,7 +58,7 @@ export default function RootLayout({
           geistMono.variable,
         )}
       >
-        {children}
+        <CookiesProvider>{children}</CookiesProvider>
       </body>
     </html>
   );

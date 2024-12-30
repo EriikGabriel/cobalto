@@ -1,11 +1,11 @@
+import { RepoDialog } from "@/app/components/repo-dialog";
 import { SignOutButton } from "@components/sign-out-button";
-import { getAccessToken } from "@services/cookies";
 import { octokit } from "@services/octokit";
 
 export default async function Auth() {
-  const { data } = await octokit.request("GET /user");
+  const { data: user } = await octokit.request("GET /user");
 
-  const accessToken = await getAccessToken();
+  // const accessToken = await getAccessToken();
 
   return (
     <main className="flex h-dvh w-full flex-col items-center">
@@ -14,11 +14,7 @@ export default async function Auth() {
       </header>
       <h1>Home</h1>
 
-      {accessToken && (
-        <div>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
-      )}
+      <RepoDialog user={user.login ?? ""} />
     </main>
   );
 }

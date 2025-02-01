@@ -1,16 +1,17 @@
-import { getCookies } from "next-client-cookies/server";
+"use server";
+
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
 type CookieOptions = Partial<ResponseCookie | undefined>;
 
 export async function getAccessToken() {
-  const cookieStore = await getCookies();
+  const cookieStore = await cookies();
   const accessToken = cookieStore.get(
     process.env.NEXT_PUBLIC_COOKIE_TOKEN_NAME as string,
   );
 
-  return accessToken;
+  return accessToken?.value;
 }
 
 export async function setAccessToken(

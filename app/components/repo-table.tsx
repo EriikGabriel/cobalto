@@ -13,11 +13,11 @@ import {
 } from "@tanstack/react-table";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+import { useOctokit } from "@hooks/use-octokit";
 import { Input } from "@ui/input";
 import { Table, TableBody, TableCell, TableRow } from "@ui/table";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { BookOpen, Box, CircleCheck, Search } from "lucide-react";
-import { useOctokit } from "../hooks/octokit";
 import { GithubRepo, GithubRepos } from "../types/octokit";
 import { Button } from "./ui/button";
 
@@ -48,7 +48,7 @@ export function RepoTable({
       const reposWithReadme = await Promise.all(
         repos.map(async (repo: GithubRepo) => {
           try {
-            const { data: contents, status } = await clientOctokit.request(
+            const { data: contents } = await clientOctokit.request(
               "GET /repos/{owner}/{repo}/contents/{path}",
               {
                 owner: repo.owner.login,
@@ -62,7 +62,9 @@ export function RepoTable({
             );
 
             return { ...repo, has_readme };
-          } catch (error) {
+          } catch (err) {
+            console.log(err);
+
             return { ...repo, has_readme: false };
           }
         }),
@@ -150,7 +152,7 @@ export function RepoTable({
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <div className="flex h-10 items-center rounded-md border border-muted-foreground pl-3 text-sm ring-offset-background">
+        <div className="flex h-10 items-center rounded-md border border-primary-200 pl-3 text-sm ring-offset-background">
           <Search className="size-4 text-muted-foreground" />
           <Input
             placeholder="Search repository..."
@@ -204,7 +206,7 @@ export function RepoTable({
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="select-none space-x-2">
           <Button
-            className="w-20"
+            className="w-20 border-primary-200 text-primary-200"
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
@@ -213,7 +215,7 @@ export function RepoTable({
             Previous
           </Button>
           <Button
-            className="w-20"
+            className="w-20 border-primary-200 text-primary-200"
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}

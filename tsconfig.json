@@ -26,6 +26,7 @@
       "@ui/*": ["./app/components/ui/*"],
       "@helpers/*": ["./app/helpers/*"],
       "@services/*": ["./app/services/*"],
+      "@hooks/*": ["./app/hooks/*"],
       "@@types/*": ["./app/types/*"]
     }
   },

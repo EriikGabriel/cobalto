@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
-import { cn } from "@lib/utils";
 import { CookiesProvider } from "next-client-cookies/server";
 import { Inter, Pathway_Gothic_One as Pathway, Roboto } from "next/font/google";
+
+import { cn } from "@lib/utils";
 import localFont from "next/font/local";
 
+import { SidebarProvider } from "@ui/sidebar";
 import "./globals.css";
 
 const inter = Inter({
@@ -58,7 +60,9 @@ export default function RootLayout({
           geistMono.variable,
         )}
       >
-        <CookiesProvider>{children}</CookiesProvider>
+        <CookiesProvider>
+          <SidebarProvider>{children}</SidebarProvider>
+        </CookiesProvider>
       </body>
     </html>
   );

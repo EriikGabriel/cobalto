@@ -1,6 +1,7 @@
 "use client";
 
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import { setCookie } from "@services/cookies";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -8,10 +9,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@ui/alert-dialog";
 import { Button } from "@ui/button";
 import { Box } from "lucide-react";
+import { useCookies } from "next-client-cookies";
 import { useState } from "react";
 import { RepoTable } from "./repo-table";
 
@@ -22,9 +23,11 @@ interface RepoDialogProps {
 export function RepoDialog({ user }: RepoDialogProps) {
   const [selectedRepoName, setSelectedRepoName] = useState<string | null>(null);
 
+  const cookies = useCookies();
+
   return (
-    <AlertDialog defaultOpen={!!!selectedRepoName}>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
+    <AlertDialog open={!!!cookies.get("@cobalto:repo")}>
+      {/* <AlertDialogTrigger>Open</AlertDialogTrigger> */}
 
       <AlertDialogContent className="min-h-[70%] max-w-4xl outline-none">
         <AlertDialogHeader>
@@ -65,6 +68,7 @@ export function RepoDialog({ user }: RepoDialogProps) {
         <AlertDialogFooter>
           <Button
             className="w-1/4 select-none bg-primary-200 font-bold"
+            onClick={() => setCookie("@cobalto:repo", selectedRepoName ?? "")}
             disabled={!!!selectedRepoName}
           >
             Done
